@@ -9,7 +9,7 @@ import {
 } from '../actions/types';
 
 
-export default ( state: {}, action: any ) => {
+export default ( state={}, action: any) => {
     switch (action.type) {
         case FETCH_STREAMS: 
             return { ...state, ..._.mapKeys(action.payload, 'id' ) };
@@ -21,6 +21,8 @@ export default ( state: {}, action: any ) => {
             return {... state, [action.payload.id]: action.payload };
         case DELETE_STREAM: 
             return _.omit(state, action.payload);
-        default: state
+        default: {
+            return state;
+        }
     }
 };
