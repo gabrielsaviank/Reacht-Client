@@ -1,10 +1,18 @@
 import React from 'react';
-import { Field, formValues, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createStream } from '../../ducks/actions'
 
-class StreamCreate extends React.Component {
-  renderError({ error, touched }) {
+interface StreamCreateProps {
+  error?: any,
+  touched?: boolean
+  createStream?: any,
+  handleSubmit?: any,
+  {title: string}: any 
+};
+
+class StreamCreate extends React.Component<StreamCreateProps> {
+  renderError({ error, touched } : {error: any, touched: boolean}) {
     if (touched && error) {
       return (
         <div className="ui error message">
@@ -14,7 +22,7 @@ class StreamCreate extends React.Component {
     };
   };
 
-  renderInput = ( {input, label, meta } ) =>  {
+  renderInput = ( {input, label, meta } : {input: any, label: any, meta: any} ) =>  {
     const className = `field ${meta.error && meta.touched} ? 'error'  : ''`;
     return (
       <div className={className}>
@@ -25,7 +33,7 @@ class StreamCreate extends React.Component {
     );
   };
 
-  onSubmit = (formValues) => {
+  onSubmit = (formValues: any) => {
     this.props.createStream(formValues);
   };
 
@@ -53,8 +61,9 @@ class StreamCreate extends React.Component {
   };
 };
 
-const validate = (formValues) => {
+const validate = (formValues: any) => {
   const errors = {};
+
   if(!formValues.title) {
     errors.title = 'You must enter a title';
   };
