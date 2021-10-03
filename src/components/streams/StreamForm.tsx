@@ -1,8 +1,15 @@
 import React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 
-class StreamForm extends React.Component {
-    renderError({ error, touched }) {
+interface StreamProps {
+    onSubmit?: (formValues: any, onSubmit: any) => void,
+    handleSubmit: any
+}
+
+interface StreamState {}
+
+class StreamForm extends React.Component<InjectedFormProps, StreamProps, StreamState> {
+    renderError({ error, touched } : {error: boolean, touched: boolean}) {
         if (touched && error) {
             return (
                 <div className="ui error message">
@@ -12,7 +19,7 @@ class StreamForm extends React.Component {
         };
     };
 
-    renderInput = ( {input, label, meta }) =>  {
+    renderInput = ( {input, label, meta }: {input: any, label: any, meta: any}) =>  {
         const className = `field ${meta.error && meta.touched} ? 'error'  : ''`;
         return (
             <div className={className}>
@@ -23,7 +30,8 @@ class StreamForm extends React.Component {
         );
     };
 
-    onSubmit = (formValues) => {
+    onSubmit = (formValues: any,) => {
+        // @ts-ignore
         this.props.onSubmit(formValues);
     };
 
@@ -51,8 +59,8 @@ class StreamForm extends React.Component {
     };
 };
 
-const validate = (formValues) => {
-    const errors = {};
+const validate = (formValues: any) => {
+    const errors: any = {};
 
     if(!formValues.title) {
         errors.title = 'You must enter a title';

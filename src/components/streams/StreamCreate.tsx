@@ -2,9 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStream } from '../../ducks/actions'
 import StreamForm from "./StreamForm";
+import {InjectedFormProps} from "redux-form";
 
-class StreamCreate extends React.Component {
-  onSubmit = (formValues) => {
+interface CreateStreamProps {
+    createStream: (formValues: any) => void
+}
+
+interface CreateStreamState {}
+
+class StreamCreate extends React.Component<CreateStreamProps, CreateStreamState, InjectedFormProps> {
+  onSubmit = (formValues: any) => {
     this.props.createStream(formValues);
   };
 
