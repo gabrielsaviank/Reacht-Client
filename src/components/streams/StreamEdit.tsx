@@ -2,13 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchStream, editStream } from '../../ducks/actions'
 import StreamForm from "./StreamForm";
+import _ from 'lodash'
 
 interface StreamEditProps {
   fetchStream?: any,
   match?: any,
   stream?: object | any,
-  title?: string
-};
+  title?: string,
+  editStream?: any
+}
 
 class StreamEdit extends React.Component<StreamEditProps> {
   componentDidMount() {
@@ -16,23 +18,23 @@ class StreamEdit extends React.Component<StreamEditProps> {
   };
 
   onSubmit = (formValues: () => void) => {
-    console.log(formValues)
-  }
+    this.props.editStream(this.props.match.params.id, formValues)
+  };
 
   render() {
     if(!this.props.stream) {
       return <div>Loading...</div>
-    };
+    }
     return (
       <div>
         <h3>Edit Stream</h3>
         <StreamForm
-            initialValues={{title: 'Edit Me', description: 'change me too'}}
+            initialValues={_.pick(this.props.stream, 'title', 'description')}
             onSubmit={this.onSubmit}
         />
       </div>
     )
-  }
+  };
 }
 
 const mapStateToProps = ( state: any, ownProps: any ) => {
