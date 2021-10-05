@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStream } from '../../ducks/actions'
+import { fetchStream, editStream } from '../../ducks/actions'
+import StreamForm from "./StreamForm";
 
 interface StreamEditProps {
   fetchStream?: any,
@@ -12,15 +13,24 @@ interface StreamEditProps {
 class StreamEdit extends React.Component<StreamEditProps> {
   componentDidMount() {
     this.props.fetchStream(this.props.match.params.id)
-    
   };
+
+  onSubmit = (formValues: () => void) => {
+    console.log(formValues)
+  }
 
   render() {
     if(!this.props.stream) {
       return <div>Loading...</div>
     };
     return (
-      <div>{this.props.stream.title}</div>
+      <div>
+        <h3>Edit Stream</h3>
+        <StreamForm
+            initialValues={{title: 'Edit Me', description: 'change me too'}}
+            onSubmit={this.onSubmit}
+        />
+      </div>
     )
   }
 }
@@ -31,5 +41,5 @@ const mapStateToProps = ( state: any, ownProps: any ) => {
 
 export default connect( 
   mapStateToProps,
-  {fetchStream}
+  {fetchStream, editStream}
 )(StreamEdit);
