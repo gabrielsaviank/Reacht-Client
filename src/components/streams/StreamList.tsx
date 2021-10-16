@@ -15,7 +15,7 @@ class StreamList extends React.Component<StreamProps> {
     this.props.fetchStreams();
   };
 
-  renderAdmin(stream: any) {
+  renderAdmin(stream: {userId: string, id: string}) {
     if (stream.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
@@ -23,9 +23,9 @@ class StreamList extends React.Component<StreamProps> {
             Edit
           </Link>
 
-          <button className="ui button negative">
+          <Link to={`/streams/delete/${stream.id}`}  className="ui button negative">
             Delete
-          </button>
+          </Link>
         </div>
       );
     };
