@@ -1,40 +1,49 @@
 # Reacht Streaming App
 
-## Steps
+## About
 
-In the project directory, you can run:
+This is a React App for streaming random stuff.
 
+### Running the App
+
+In the main directory run: 
 ### `yarn`
 
-To install the dependencies.
+To start run 
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Server
+* Make sure you have cloned Reacht Server
 
-### `yarn test`
+### Here [https://github.com/gabrielsaviank/Reacht-Server]()
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install Using 
 
-### `yarn build`
+### `yarn`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Compile Using
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `yarn start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### RTMP Server
 
-### Deployment
+Navigate to the folder `rtmp server` and run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### `yarn`
 
-### `yarn build` fails to minify
+Compile Using
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `yarn start`
+
+### Streaming 
+
+* Download Obs Studio
+
+* Setup `custom` in the Streaming settings.
+
+* Start Streaming;
+
+# Screenshots
+
