@@ -1,9 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import flv from 'flv.js';
 
 import { fetchStream } from "../../ducks/actions";
 
-class StreamShow extends React.Component<any, any>{
+interface StreamShowProps{
+    videoRef: any,
+    fetchStream: any,
+    match: any,
+    stream: any
+}
+
+class StreamShow extends React.Component<StreamShowProps, any>{
+    private videoRef: any;
+    constructor(props: any){
+        super(props);
+
+        this.videoRef = React.createRef();
+    };
+
   componentDidMount() {
     this.props.fetchStream(this.props.match.params.id);
   };
@@ -17,6 +32,11 @@ class StreamShow extends React.Component<any, any>{
 
     return (
         <div>
+            <video
+                ref={this.videoRef}
+                style={{width: '100%'}}
+                controls={true}
+            />
           <h1>{title}</h1>
           <h5>{description}</h5>
         </div>
