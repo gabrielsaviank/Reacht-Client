@@ -1,13 +1,13 @@
 import streams from '../../apis/streams'
 import history from '../../history';
-import { 
-  SIGN_IN, 
-  SIGN_OUT, 
+import {
+  SIGN_IN,
+  SIGN_OUT,
   CREATE_STREAM,
   FETCH_STREAM,
   FETCH_STREAMS,
   DELETE_STREAM,
-  EDIT_STREAM, 
+  EDIT_STREAM,
 } from "./types";
 
 export const signIn = (userId: string) => {
@@ -50,6 +50,7 @@ export const deleteStream = ( id: string ) => async (dispatch: any) => {
   await streams.delete(`/streams/${id}`);
 
   dispatch({ type: DELETE_STREAM, payload: id })
+  history.push('/');
 };
 
 export const editStream = ( id: string, formValues: () => void ) => async (dispatch: any) => {
