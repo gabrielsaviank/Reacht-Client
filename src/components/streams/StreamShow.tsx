@@ -8,11 +8,13 @@ interface StreamShowProps{
     videoRef: any,
     fetchStream: any,
     match: any,
-    stream: any
+    stream: any,
+    player: any
 }
 
 class StreamShow extends React.Component<StreamShowProps, any>{
     private videoRef: any;
+    private player: any;
     constructor(props: any){
         super(props);
 
@@ -20,7 +22,15 @@ class StreamShow extends React.Component<StreamShowProps, any>{
     };
 
   componentDidMount() {
+      const { id } = this.props.match.params;
+
     this.props.fetchStream(this.props.match.params.id);
+    flv.createPlayer({
+        type: 'flv',
+        url: `http://localhost:8000/live/${id}.flv`
+    });
+    this.player.attachMediaElement(this.videoRef.current);
+    this.player.load()
   };
 
   render(){
@@ -34,11 +44,11 @@ class StreamShow extends React.Component<StreamShowProps, any>{
         <div>
             <video
                 ref={this.videoRef}
-                style={{width: '100%'}}
+                style={{width: '55%', marginLeft: 400}}
                 controls={true}
             />
-          <h1>{title}</h1>
-          <h5>{description}</h5>
+          <h1 style={{marginLeft: 400}}>{title}</h1>
+          <h5 style={{marginLeft: 400}}>{description}</h5>
         </div>
     );
   }
