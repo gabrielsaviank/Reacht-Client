@@ -5,7 +5,8 @@ import StreamForm from "./StreamForm";
 import {InjectedFormProps} from "redux-form";
 
 interface CreateStreamProps {
-    createStream: (formValues: any) => void
+    createStream: (formValues: any) => void,
+    videoRef: any
 }
 
 interface CreateStreamState {}
